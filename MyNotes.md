@@ -18,6 +18,13 @@ curl -d '{"instances": [1.0, 2.0, 5.0]}'   -X POST http://localhost:8501/v1/mode
     ]
 }
 
+docker run -p 8501:8501 --mount type=bind,source=/Users/ariyabalasadaiappan/Documents/baidu_test_model/V2,target=/models/baidu_test -e MODEL_NAME=baidu_test -t tensorflow/serving &
+
+curl -d '{"x": [[1, 1, 1, 1, 50.2, 50.2, 50.2, 50.2, 50.2, 50.2, 50.2, 50.2, 50.2, 50.2, 50.2, 50.2, 50.2]]}' -X POST http://localhost:8501/v1/models/baidu_test:predict_speed_15min
+
+
+
+
 Building custom container with custom model:
 ---------------------------------------------
 /Users/ariyabalasadaiappan/gitariya/serving/tensorflow_serving/servables/tensorflow/testdata/saved_model_half_plus_two_cpu
